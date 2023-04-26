@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+  <%= form_tag(search_articles_path, method: :get) do %>
+    <%= label_tag(:q, 'Search for:') %>
+    <%= text_field_tag(:q) %>
+
+    <%= label_tag(:sort_by, 'Sort by:') %>
+    <%= select_tag(:sort_by, options_for_select([['Relevance', 'relevance'], ['Date', 'date']])) %>
+
+<%= submit_tag('Search') %>
+<% end %>
+    <% @articles.each do |article| %>
+      <div class="col-md-3">
+        <div class="card mb-4 h-100">
+          <img src="<%= article['urlToImage'] %>" class="card-img-top" alt="Article image">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to article['title'], show_articles_path(title: article['title']) %></h5>
+            <p class="card-text"><%= article['description'] %></p>
+            <p class="card-text"><small class="text-muted"><%= article['publishedAt'] %></small></p>
+            <%= button_to "Save to Favorites", favorites_path(article: article), method: :post, remote: true %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
