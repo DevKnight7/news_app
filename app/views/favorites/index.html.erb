@@ -1,2 +1,15 @@
-<h1>Favorites#index</h1>
-<p>Find me in app/views/favorites/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% @favorites.each do |favorite| %>
+      <div class="col-md-3">
+        <div class="card mb-4 h-100">
+          <img src="<%= favorite['urlToImage'] %>" class="card-img-top" alt="Article image">
+          <div class="card-body">
+            <h5 class="card-title"><%= favorite['title'] %></h5>
+            <%= button_to 'Remove from favorites', favorite_path(favorite), method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
