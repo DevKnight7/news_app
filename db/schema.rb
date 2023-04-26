@@ -12,15 +12,15 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_04_26_125305) do
   create_table "favorites", force: :cascade do |t|
-    t.string "title"
-    t.string "url"
-    t.string "urlToImage"
-    t.text "description"
-    t.text "content"
+    t.string "title", null: false
+    t.string "url", null: false
+    t.string "urlToImage", null: false
+    t.string "description", null: false
+    t.string "content", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["title"], name: "index_favorites_on_title"
+    t.index ["title"], name: "index_favorites_on_title", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
